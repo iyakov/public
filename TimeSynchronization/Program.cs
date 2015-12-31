@@ -8,10 +8,23 @@ using System.Threading.Tasks;
 
 namespace TimeSynchronization
 {
-    class Program
+    public sealed class Program
     {
-        static void Main(string[] args)
+        private static readonly TimeSynchronizer Times = new TimeSynchronizer
         {
+            Client = { WorldTime = 370 },
+            Server = { WorldTime = 100 }
+        };
+
+        public static void Main(string[] args)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Times.TickReal(10);
+            }
+
+            // insert your code here
+
         }
     }
 }
