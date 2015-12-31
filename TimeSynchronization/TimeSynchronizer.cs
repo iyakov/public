@@ -1,6 +1,6 @@
 ﻿namespace TimeSynchronization
 {
-    public class TimeSynchronizer
+    public sealed class TimeSynchronizer
     {
              
     }
