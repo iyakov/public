@@ -3,9 +3,9 @@ using System.Diagnostics;
 
 namespace TimeSynchronization
 {
-    public sealed class TimeSynchronizer
+    public sealed class ApplicationTimes
     {
-        public TimeSynchronizer()
+        public ApplicationTimes()
         {
             Client = new Times();
             Server = new Times();

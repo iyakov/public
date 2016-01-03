@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace TimeSynchronization
 {
     [TestFixture]
-    public sealed class TimeSynchronizerTests
+    public sealed class ApplicationTimesTests
     {
-        private TimeSynchronizer _underTest;
+        private ApplicationTimes _underTest;
 
         [SetUp]
         public void Setup()
         {
-            _underTest = new TimeSynchronizer
+            _underTest = new ApplicationTimes
             {
                 Server = { WorldTime = 100 },
                 Client = { WorldTime = 370 }
@@ -26,7 +21,7 @@ namespace TimeSynchronization
         [Test]
         public void Initialization_Should_InitializeProperties()
         {
-            _underTest.ShouldBeEquivalentTo(new TimeSynchronizer
+            _underTest.ShouldBeEquivalentTo(new ApplicationTimes
             {
                 Server = { WorldTime = 100, GameTime = 0 },
                 Client = { WorldTime = 370, GameTime = 0 }
@@ -56,7 +51,7 @@ namespace TimeSynchronization
         {
             _underTest.Tick(5);
 
-            _underTest.ShouldBeEquivalentTo(new TimeSynchronizer
+            _underTest.ShouldBeEquivalentTo(new ApplicationTimes
             {
                 Server = { WorldTime = 105, GameTime = 5 },
                 Client = { WorldTime = 375, GameTime = 5 }
@@ -64,7 +59,7 @@ namespace TimeSynchronization
 
             _underTest.Tick(10);
 
-            _underTest.ShouldBeEquivalentTo(new TimeSynchronizer
+            _underTest.ShouldBeEquivalentTo(new ApplicationTimes
             {
                 Server = { WorldTime = 115, GameTime = 15 },
                 Client = { WorldTime = 385, GameTime = 15 }
@@ -76,7 +71,7 @@ namespace TimeSynchronization
         {
             _underTest.TickReal(5);
 
-            _underTest.ShouldBeEquivalentTo(new TimeSynchronizer
+            _underTest.ShouldBeEquivalentTo(new ApplicationTimes
             {
                 Server = { WorldTime = 105, GameTime = 5 },
                 Client = { WorldTime = 376, GameTime = 4 }
@@ -84,7 +79,7 @@ namespace TimeSynchronization
 
             _underTest.TickReal(10);
 
-            _underTest.ShouldBeEquivalentTo(new TimeSynchronizer
+            _underTest.ShouldBeEquivalentTo(new ApplicationTimes
             {
                 Server = { WorldTime = 115, GameTime = 15 },
                 Client = { WorldTime = 387, GameTime = 13 }
